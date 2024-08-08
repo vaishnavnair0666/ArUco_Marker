@@ -1,0 +1,22 @@
+import cv2
+
+# Load the Aruco dictionary
+dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
+
+# Initialize the Aruco detector
+parameters = cv2.aruco.DetectorParameters_create()
+
+# Load the image
+image = cv2.imread("image.jpg")
+
+# Detect the markers in the image
+corners, ids, rejected = cv2.aruco.detectMarkers(image, dictionary, parameters=parameters)
+
+# Draw the detected markers on the image
+if ids is not None:
+    cv2.aruco.drawDetectedMarkers(image, corners, ids)
+
+# Display the image with the detected markers
+cv2.imshow("Image with Markers", image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
